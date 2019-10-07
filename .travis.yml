@@ -14,3 +14,14 @@ install:
 
 script:
   - npm run test
+  - npm run lint
+  - npm run build -- --base-href /yey-jest/
+  - mv dist/yey-jest/index.html dist/yey-jest/404.html
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/yey-jest
+  on:
+    branch: master
