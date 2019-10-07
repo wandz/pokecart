@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('yey-jest app is runnin!');
+    expect(compiled.querySelector('.content span').textContent).toContain('yey-jest app is running!');
   });
 });
