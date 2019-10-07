@@ -15,7 +15,7 @@ install:
 script:
   - npm run test
   - npm run lint
-  - npm run build -- --base-href /pokecart/
+  - npm run build -- --prod
   - mv dist/pokecart/index.html dist/pokecart/404.html
 
 deploy:
