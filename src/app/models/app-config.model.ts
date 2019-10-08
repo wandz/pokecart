@@ -1,6 +1,8 @@
 export interface IAppConfig {
-    env: string;
-    featureToggle: {
-        [name: string]: boolean;
-    };
+  env: string;
+  featureToggle: IFeatureToggle;
+}
+
+export interface IFeatureToggle {
+  [name: string]: boolean;
 }

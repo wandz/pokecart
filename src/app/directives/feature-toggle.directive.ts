@@ -1,6 +1,7 @@
-import { Directive, Input, OnInit, ElementRef } from '@angular/core';
-import { environment } from '../../environments/environment';
-const config = require(`../../assets/config/config.${environment.name}.json`);
+import { Directive, Input, OnInit, ElementRef, InjectionToken, Inject } from '@angular/core';
+import { IFeatureToggle } from '../models/app-config.model';
+
+export const FEATURE_TOGGLES_DI_TOKEN = new InjectionToken<IFeatureToggle>('FEATURE_TOGGLES_DI_TOKEN');
 
 @Directive({
   selector: '[pokeFeatureToggle]'
@@ -8,11 +9,13 @@ const config = require(`../../assets/config/config.${environment.name}.json`);
 export class FeatureToggleDirective implements OnInit {
   @Input('pokeFeatureToggle') featureToggle: string;
 
-  constructor(private el: ElementRef) {
+  constructor(
+    private el: ElementRef,
+    @Inject(FEATURE_TOGGLES_DI_TOKEN) private toggles: IFeatureToggle) {
   }
 
   ngOnInit() {
-    if (!config.featureToggle[this.featureToggle]) {
+    if (!this.toggles[this.featureToggle]) {
       this.el.nativeElement.parentNode.removeChild(this.el.nativeElement);
     }
   }

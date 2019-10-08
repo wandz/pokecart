@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { FeatureToggleDirective } from './directives/feature-toggle.directive';
+import { FeatureToggleDirective, FEATURE_TOGGLES_DI_TOKEN } from './directives/feature-toggle.directive';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,6 +13,7 @@ describe('AppComponent', () => {
         FeatureToggleDirective,
         AppComponent
       ],
+      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'show-title': true } }]
     }).compileComponents();
   }));
 
