@@ -1,6 +1,7 @@
 {
   "featureToggle": {
     "enable-example": true,
-    "disable-example": false
+    "disable-example": false,
+    "show-title": false
   }
 }
