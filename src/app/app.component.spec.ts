@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { FeatureToggleDirective } from './directives/feature-toggle.directive';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,6 +10,7 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
+        FeatureToggleDirective,
         AppComponent
       ],
     }).compileComponents();

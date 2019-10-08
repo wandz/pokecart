@@ -10,8 +10,7 @@ module.exports = {
     }
   },
   setupFilesAfterEnv: [
-    "<rootDir>/node_modules/@angular-builders/jest/dist/jest-config/setup.js",
-    "<rootDir>/test.ts"
+    "<rootDir>/node_modules/@angular-builders/jest/dist/jest-config/setup.js"
   ],
   transform: {
     "^.+\\.(ts|js|html)$": "ts-jest"
