@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FeatureToggleDirective } from './directives/feature-toggle.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FeatureToggleDirective
   ],
   imports: [
     BrowserModule,
