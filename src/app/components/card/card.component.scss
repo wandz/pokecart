@@ -1,0 +1,13 @@
+@import "../../../variables.scss";
+
+.pokecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 150px;
+  border: 10px solid $yellow;
+  background-color: $orange;
+  color: #fff;
+  border-radius: 10px;
+}
