@@ -5,7 +5,7 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 describe('CardComponent', () => {
 
   it('renders a pokemon name', async () => {
-    const pokemon = new Pokemon('Pikachu');
+    const pokemon = new Pokemon(1, 'Pikachu');
     const component = await render(CardComponent, {
       componentProperties: { pokemon }
     });

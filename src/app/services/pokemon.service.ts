@@ -32,7 +32,12 @@ export class PokemonService {
     return pokemonListResponse.results.map((pokemonResult) => this.deserializePokemonResponse(pokemonResult));
   }
 
-  private deserializePokemonResponse(pokemonResult): Pokemon {
-    return new Pokemon(pokemonResult.name);
+  private deserializePokemonResponse(pokemonResult: PokemonResponse): Pokemon {
+    const id = this.getIdPokemon(pokemonResult.url);
+    return new Pokemon(id, pokemonResult.name);
+  }
+
+  private getIdPokemon(url: string) {
+    return Number(url.match(/\d+/g)[1]);
   }
 }
