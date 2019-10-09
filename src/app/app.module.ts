@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeatureToggleDirective, FEATURE_TOGGLES_DI_TOKEN } from './directives/feature-toggle.directive';
 import { environment } from 'src/environments/environment';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeatureToggleDirective
+    FeatureToggleDirective,
+    CardComponent
   ],
   imports: [
     BrowserModule,

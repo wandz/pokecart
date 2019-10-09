@@ -9,7 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:watch": "ng test --watch",
-    "test:coverage": "ng test --coverage"
+    "test:coverage": "ng test --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -33,10 +35,17 @@
     "@angular/cli": "~8.3.6",
     "@angular/compiler-cli": "~8.2.8",
     "@angular/language-service": "~8.2.8",
+    "@babel/core": "^7.6.3",
+    "@storybook/addon-actions": "^5.2.3",
+    "@storybook/addon-links": "^5.2.3",
+    "@storybook/addon-notes": "^5.2.3",
+    "@storybook/addons": "^5.2.3",
+    "@storybook/angular": "^5.2.3",
     "@testing-library/angular": "^8.0.3",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.9.5",
+    "babel-loader": "^8.0.6",
     "codelyzer": "^5.0.0",
     "husky": "^3.0.8",
     "jasmine-core": "~3.4.0",
@@ -44,6 +53,7 @@
     "jest": "^24.9.0",
     "jest-preset-angular": "^7.1.1",
     "protractor": "~5.4.0",
+    "raw-loader": "^1.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
