@@ -2,37 +2,26 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FeatureToggleDirective, FEATURE_TOGGLES_DI_TOKEN } from './directives/feature-toggle.directive';
+import { render } from '@testing-library/angular';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        FeatureToggleDirective,
-        AppComponent
-      ],
-      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'show-title': true } }]
-    }).compileComponents();
-  }));
+  it('should create the app', async () => {
+    const component = await render(AppComponent, {
+      imports: [RouterTestingModule],
+      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'show-title': true } }],
+      declarations: [FeatureToggleDirective]
+    });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'pokecart'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('pokecart');
-  });
+  it('should render title', async () => {
+    const component = await render(AppComponent, {
+      imports: [RouterTestingModule],
+      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'show-title': true } }],
+      declarations: [FeatureToggleDirective]
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('pokecart app is running!');
+    expect(component.queryByText('pokecart app is running!')).not.toBeNull();
   });
 });
