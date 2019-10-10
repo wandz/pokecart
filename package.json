@@ -2,6 +2,10 @@
   "name": "pokecart",
   "version": "0.0.0",
   "scripts": {
+    "docker:npm": "docker run poke-docker npm",
+    "docker:npm:install": "npm run docker:npm -- install",
+    "docker:npm:run": "npm run docker:npm -- run",
+    "docker:build": "docker build . -t poke-docker",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
