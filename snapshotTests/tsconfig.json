@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
@@ -10,13 +10,8 @@
     "emitDecoratorMetadata": true,
     "allowJs": true
   },
-  "files": [
-    "src/polyfills.ts"
-  ],
   "include": [
-    "node_modules/**/*.d.ts",
-    "node_modules/@types/jest-image-snapshot/index.d.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "./**/*.ts",
+    "../node_modules/**/*.d.ts"
   ]
 }

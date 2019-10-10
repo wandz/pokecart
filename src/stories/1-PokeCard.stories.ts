@@ -5,7 +5,7 @@ export default {
   title: 'PokeCard',
 };
 
-const pokemon = new Pokemon('Bulbassaur');
+const pokemon = new Pokemon(1, 'Bulbassaur');
 
 export const Card = () => ({
   component: CardComponent,
