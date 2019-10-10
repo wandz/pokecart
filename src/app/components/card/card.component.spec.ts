@@ -11,4 +11,13 @@ describe('CardComponent', () => {
     });
     expect(component.getByText('Pikachu')).toBeTruthy();
   });
+
+  it('has a sprite with alt text', async () => {
+    const pokemon = new Pokemon(1, 'Bulbasauro');
+    const component = await render(CardComponent, {
+      componentProperties: {pokemon}
+    });
+
+    expect(component.getByAltText('Bulbasauro sprite')).not.toBeNull();
+  });
 });

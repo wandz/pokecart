@@ -11,7 +11,7 @@ cache:
 
 install:
   - npm run docker:build
-  - npm install
+  - npm run docker:npm:install
 
 script:
   - npm run docker:npm:run -- lint
