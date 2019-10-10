@@ -8,9 +8,16 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('pokecart app is running!');
+  describe('shows the pokemons available to adoption', () => {
+    it('displays 20 pokemons when the home page is loaded', () => {
+      page.navigateTo();
+      expect(page.getTotalOfPokemons()).toEqual(20);
+    });
+
+    it('displays bulbasaur as the first pokemon', () => {
+      page.navigateTo();
+      expect(page.getFirstPokemonName()).toEqual('bulbasaur');
+    });
   });
 
   afterEach(async () => {

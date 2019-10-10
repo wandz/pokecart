@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  getTotalOfPokemons() {
+    return element.all(by.tagName('poke-card')).count() as Promise<number>;
+  }
+
+  getFirstPokemonName() {
+    return element(by.css('poke-card:first-child')).getText() as Promise<string>;
   }
 }
