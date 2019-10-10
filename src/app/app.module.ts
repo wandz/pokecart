@@ -9,13 +9,15 @@ import { CardComponent } from './components/card/card.component';
 import { PokemonService } from './services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardListComponent } from './components/card-list/card-list.component';
+import { AdoptComponent } from './pages/adopt/adopt.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FeatureToggleDirective,
     CardComponent,
-    CardListComponent
+    CardListComponent,
+    AdoptComponent
   ],
   imports: [
     BrowserModule,
