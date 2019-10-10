@@ -8,12 +8,14 @@ import { environment } from 'src/environments/environment';
 import { CardComponent } from './components/card/card.component';
 import { PokemonService } from './services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CardListComponent } from './components/card-list/card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FeatureToggleDirective,
-    CardComponent
+    CardComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
