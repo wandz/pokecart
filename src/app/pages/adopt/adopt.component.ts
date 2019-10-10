@@ -8,7 +8,7 @@ import { Pokemon } from '../../models/pokemon.model';
   styleUrls: ['./adopt.component.scss']
 })
 export class AdoptComponent implements OnInit {
-  private pokemons: Pokemon[] = [];
+  public pokemons: Pokemon[] = [];
 
   constructor(private readonly pokemonService: PokemonService) { }
 
@@ -16,5 +16,4 @@ export class AdoptComponent implements OnInit {
     this.pokemonService.getAll()
       .subscribe((pokemons) => this.pokemons = pokemons);
   }
-
 }
