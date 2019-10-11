@@ -1,15 +1,18 @@
-import { browser, by, element } from 'protractor';
 
 export class AppPage {
-  navigateTo() {
-    return browser.get(browser.baseUrl) as Promise<any>;
+  async navigateTo() {
+    await page.goto('http://localhost:4200/');
+    await page.waitForSelector('poke-card');
   }
 
   getTotalOfPokemons() {
-    return element.all(by.tagName('poke-card')).count() as Promise<number>;
+    return page.evaluate(() =>
+      document.getElementsByTagName('poke-card').length );
   }
 
   getFirstPokemonName() {
-    return element(by.css('poke-card:first-child')).getText() as Promise<string>;
+    return page.evaluate(() =>
+      document.querySelector('poke-card:first-child h1').textContent);
   }
 }
+
