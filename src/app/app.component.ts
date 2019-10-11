@@ -14,8 +14,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokemonService.getAll().subscribe((pokemons: Pokemon[]) => {
-      console.log(pokemons);
-    });
   }
 }
