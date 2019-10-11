@@ -17,7 +17,7 @@
     "lint": "ng lint",
     "test:watch": "ng test --watch",
     "test:coverage": "ng test --coverage",
-    "storybook": "start-storybook -p 6006 --ci",
+    "storybook": "start-storybook -p 6006 --ci --quiet",
     "build-storybook": "build-storybook"
   },
   "private": true,
