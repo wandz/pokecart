@@ -20,4 +20,13 @@ describe('Check all snapshots', () => {
       expect(image).toMatchImageSnapshot();
     });
   });
+
+  describe('PokeCardList', () => {
+    it('visually looks correct', async () => {
+      await page.goto('http://localhost:6006/iframe.html?id=page500--default&viewMode=story');
+
+      const image = await page.screenshot();
+      expect(image).toMatchImageSnapshot();
+    });
+  });
 });

@@ -10,6 +10,7 @@ import { PokemonService } from './services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { AdoptComponent } from './pages/adopt/adopt.component';
+import { Page500Component } from './pages/page500/page500.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdoptComponent } from './pages/adopt/adopt.component';
     FeatureToggleDirective,
     CardComponent,
     CardListComponent,
-    AdoptComponent
+    AdoptComponent,
+    Page500Component
   ],
   imports: [
     BrowserModule,
