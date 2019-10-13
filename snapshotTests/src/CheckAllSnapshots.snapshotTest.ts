@@ -13,6 +13,6 @@ describe('Check all snapshots', () => {
 
         expect(image).toMatchImageSnapshot({ customSnapshotIdentifier: `default-state-of-${story.title}` });
       }
-    });
+    }, 30000);
   });
 });

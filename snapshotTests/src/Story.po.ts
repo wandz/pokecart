@@ -1,5 +1,3 @@
-import {Page} from 'puppeteer';
-
 export class Story {
   public constructor(public readonly title: string, private readonly id: string) {}
 
