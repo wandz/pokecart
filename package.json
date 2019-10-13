@@ -2,7 +2,7 @@
   "name": "pokecart",
   "version": "0.0.0",
   "scripts": {
-    "docker:npm": "docker run -v `pwd`:/usr/src/app poke-docker npm",
+    "docker:npm": "docker run -v `pwd`:/usr/src/app:cached poke-docker npm",
     "docker:npm:install": "npm run docker:npm -- install",
     "docker:npm:run": "npm run docker:npm -- run",
     "docker:build": "docker build . -t poke-docker",

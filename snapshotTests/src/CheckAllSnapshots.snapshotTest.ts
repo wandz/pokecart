@@ -1,33 +1,18 @@
-function imagesHaveLoaded() { return Array.from(document.images).every((image) => image.complete); }
+import {StorybookHome} from './StorybookHome.po';
 
 describe('Check all snapshots', () => {
-  describe('PokeCard', () => {
+  describe('default state', () => {
     it('visually looks correct', async () => {
-      await page.goto('http://localhost:6006/iframe.html?id=pokecard--card&viewMode=story');
-      await page.waitForFunction(imagesHaveLoaded);
+      const storyBook = new StorybookHome();
+      await storyBook.navigateTo();
+      const allStories = await storyBook.getAllStories();
 
-      const image = await page.screenshot();
-      expect(image).toMatchImageSnapshot();
-    });
-  });
+      for (const story of allStories) {
+        await story.navigateTo();
+        const image = await story.screenshot();
 
-  describe('PokeCardList', () => {
-    it('visually looks correct', async () => {
-      await page.goto('http://localhost:6006/iframe.html?id=pokecardlist--default&viewMode=story');
-      await page.waitForFunction(imagesHaveLoaded);
-
-      const image = await page.screenshot();
-      expect(image).toMatchImageSnapshot();
-    });
-  });
-
-  describe('PokeCardList', () => {
-    it('visually looks correct', async () => {
-      await page.goto('http://localhost:6006/iframe.html?id=page500--default&viewMode=story');
-      await page.waitForFunction(imagesHaveLoaded);
-
-      const image = await page.screenshot();
-      expect(image).toMatchImageSnapshot();
+        expect(image).toMatchImageSnapshot({ customSnapshotIdentifier: `default-state-of-${story.title}` });
+      }
     });
   });
 });

@@ -5,13 +5,18 @@
       "jest",
       "node"
     ],
-    "module": "commonjs",
+    "sourceMap": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "allowJs": true
+    "allowJs": true,
+    "target": "es2015",
+    "lib": ["es2018", "es2015"]
   },
   "include": [
-    "./snapshotTests/*.ts",
+    "./**/*.snapshotTest.ts",
+    "./snapshotTests/**/*.ts",
     "../node_modules/**/*.d.ts"
   ]
 }
