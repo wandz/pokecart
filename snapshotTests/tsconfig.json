@@ -1,17 +1,17 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
+    "outDir": "./out-tsc/snapshot",
     "types": [
       "jest",
       "node"
     ],
     "module": "commonjs",
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowJs": true
   },
   "include": [
-    "./**/*.ts",
+    "./snapshotTests/*.ts",
     "../node_modules/**/*.d.ts"
   ]
 }

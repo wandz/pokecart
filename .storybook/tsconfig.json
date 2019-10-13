@@ -9,6 +9,8 @@
     "../src/test.ts",
     "../src/**/*.spec.ts",
     "../src/**/*.snapshotTest.ts",
+    "../src/snapshotTest/*",
+    "../src/e2e/*",
     "../projects/**/*.spec.ts"
   ],
   "include": [
