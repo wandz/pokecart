@@ -8,7 +8,7 @@ import { Cart } from '../../models/cart.model';
   styleUrls: ['./cart-count.component.scss']
 })
 export class CartCountComponent implements OnInit {
-  public cart: Cart;
+  private cart: Cart;
 
   constructor(private readonly cartService: CartService) {
   }
@@ -17,6 +17,9 @@ export class CartCountComponent implements OnInit {
     this.cartService.subscribe((cart: Cart) => {
       this.cart = cart;
     });
+  }
+  getCartCount() {
+    return this.cart.getCount();
   }
 
 }
