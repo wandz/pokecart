@@ -2,7 +2,6 @@ import { CardListComponent } from './card-list.component';
 import { Pokemon } from '../../models/pokemon.model';
 import { render } from '@testing-library/angular';
 import { CardComponent } from '../card/card.component';
-import { FeatureToggleDirective } from '../../directives/feature-toggle.directive';
 
 describe('CardListComponent', () => {
   it('renders a pokemon name', async () => {
@@ -11,7 +10,7 @@ describe('CardListComponent', () => {
     const pokemons = [pokemon, pidgey];
     const component = await render(CardListComponent, {
       componentProperties: {pokemons},
-      declarations: [ CardComponent, FeatureToggleDirective ]
+      declarations: [ CardComponent ]
     });
 
     expect(component.getByText('Pikachu')).toBeTruthy();
