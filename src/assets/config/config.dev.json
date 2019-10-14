@@ -2,6 +2,6 @@
   "featureToggle": {
     "enable-example": true,
     "disable-example": false,
-    "show-cartcount": true,
+    "show-cartcount": true
   }
 }
