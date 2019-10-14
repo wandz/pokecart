@@ -1,3 +1,13 @@
+import { Pokemon } from './pokemon.model';
+
 export class Cart {
-  public count = 0;
+  private readonly pokemons: Pokemon[] = [];
+
+  addPokemon(pokemon: Pokemon) {
+    this.pokemons.push(pokemon);
+  }
+
+  getCount() {
+    return this.pokemons.length;
+  }
 }

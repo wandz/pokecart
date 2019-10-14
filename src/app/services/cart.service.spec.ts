@@ -1,15 +1,32 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
-import {Cart} from '../models/cart.model';
+import { Cart } from '../models/cart.model';
+import { Pokemon } from '../models/pokemon.model';
 
 describe('CartService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: CartService;
+  let subscriptionSpy: jest.Mock;
 
-  it('should be created', () => {
-    const service: CartService = TestBed.get(CartService);
-    const spy = jest.fn();
-    service.subscribe(spy);
-    expect(spy).toBeCalledWith(new Cart());
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+
+    service = TestBed.get(CartService);
+    subscriptionSpy = jest.fn();
+    service.subscribe(subscriptionSpy);
+  });
+
+  it('subscribes with a blank cart', () => {
+    expect(subscriptionSpy).toBeCalledWith(new Cart());
+  });
+
+  it('adds a pokemon to the cart', () => {
+    const pokemon = new Pokemon(1, 'Bulbassaur');
+    service.addPokemon(pokemon);
+
+    const expectedCart = new Cart();
+    expectedCart.addPokemon(pokemon);
+
+    expect(subscriptionSpy).toBeCalledWith(expectedCart);
   });
 });
