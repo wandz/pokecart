@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { AdoptComponent } from './pages/adopt/adopt.component';
 import { Page500Component } from './pages/page500/page500.component';
+import { CartCountComponent } from './components/cart-count/cart-count.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Page500Component } from './pages/page500/page500.component';
     CardComponent,
     CardListComponent,
     AdoptComponent,
-    Page500Component
+    Page500Component,
+    CartCountComponent
   ],
   imports: [
     BrowserModule,
