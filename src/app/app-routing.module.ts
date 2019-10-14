@@ -5,8 +5,7 @@ import {Page500Component} from './pages/page500/page500.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'adopt', pathMatch: 'full'},
-  {path: 'adopt', component: AdoptComponent},
+  {path: '', component: AdoptComponent},
   {path: '500', component: Page500Component}
 ];
 
