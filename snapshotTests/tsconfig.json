@@ -16,8 +16,9 @@
     "lib": ["es2018", "es2015"]
   },
   "include": [
+    "../node_modules/**/*.d.ts",
     "./**/*.snapshotTest.ts",
     "./snapshotTests/**/*.ts",
-    "../node_modules/**/*.d.ts"
+    "./**/setupSnapshotTests.ts"
   ]
 }
