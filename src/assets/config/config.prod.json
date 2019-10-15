@@ -1,3 +1,5 @@
 {
-  "featureToggle": {}
+  "featureToggle": {
+    "show-cartcount": true
+  }
 }

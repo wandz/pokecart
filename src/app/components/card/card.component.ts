@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {Pokemon} from 'src/app/models/pokemon.model';
+import {CartService} from '../../services/cart.service';
 
 @Component({
   selector: 'poke-card',
@@ -9,15 +10,15 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 export class CardComponent implements OnInit {
 
   @Input() pokemon: Pokemon;
-  @Output() adopted = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private readonly cartService: CartService) {
+  }
 
   ngOnInit() {
   }
 
   adopt() {
-    this.adopted.emit();
+    this.cartService.addPokemon(this.pokemon);
   }
 
 }

@@ -22,6 +22,16 @@ describe('workspace-project App', () => {
     });
   });
 
+  describe('shows pokemon count', () => {
+    it('display 1 pokemons in cart when home page is loaded', async () => {
+      await page.navigateTo();
+      await page.isLoaded();
+      await page.clickAdoptButton();
+
+      expect(await page.getPokemonsAdoptedCount()).toEqual('1');
+    });
+  });
+
   describe('api is not responding', () => {
     it('displays error 500 page', async () => {
       page.withPokeApiError();

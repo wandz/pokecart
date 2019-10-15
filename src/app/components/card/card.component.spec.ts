@@ -2,14 +2,15 @@ import {CardComponent} from './card.component';
 import {render} from '@testing-library/angular';
 import {Pokemon} from 'src/app/models/pokemon.model';
 import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../../directives/feature-toggle.directive';
+import {CartService} from '../../services/cart.service';
 
 describe('CardComponent', () => {
-  const declarations = [ FeatureToggleDirective ];
+  const declarations = [FeatureToggleDirective];
 
   it('renders a pokemon name', async () => {
     const pokemon = new Pokemon(1, 'Pikachu');
     const component = await render(CardComponent, {
-      componentProperties: { pokemon },
+      componentProperties: {pokemon},
       declarations
     });
     expect(component.getByText('Pikachu')).toBeTruthy();
@@ -32,22 +33,41 @@ describe('CardComponent', () => {
       declarations
     });
 
-    expect(component.queryByText('Adopt')).toBeNull();
+    expect(component.queryByText('Adotar')).toBeNull();
   });
 
   it('calls adopted callback when click on adopt button', async () => {
-    const adoptedCallback = jest.fn();
+    const mockCardService = {addPokemon: jest.fn()};
     const pokemon = new Pokemon(1, 'Bulbasauro');
     const component = await render(CardComponent, {
       providers: [{
         provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}
+      }, {
+        provide: CartService, useValue: mockCardService
       }],
-      componentProperties: {pokemon, adopted: {emit: adoptedCallback}} as any,
+      componentProperties: {pokemon},
       declarations
     });
 
-    component.click(component.getByText('Adopt'));
+    component.click(component.queryByText('Adotar'));
 
-    expect(adoptedCallback).toBeCalled();
+    expect(mockCardService.addPokemon).toBeCalled();
+  });
+
+  it('calls adopted callback when press enter on adopt button', async () => {
+    const mockCardService = {addPokemon: jest.fn()};
+    const pokemon = new Pokemon(1, 'Bulbasauro');
+    const component = await render(CardComponent, {
+      providers: [{
+        provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}
+      }, {
+        provide: CartService, useValue: mockCardService
+      }],
+      componentProperties: {pokemon},
+      declarations
+    });
+    component.keyDown(component.queryByText('Adotar'), {key: 'Enter', code: 13});
+
+    expect(mockCardService.addPokemon).toBeCalled();
   });
 });
