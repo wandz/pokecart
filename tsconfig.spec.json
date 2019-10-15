@@ -1,14 +1,20 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./out-tsc/spec",
     "types": [
       "jest",
       "node"
     ],
-    "module": "commonjs",
+    "sourceMap": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "allowJs": true
+    "allowJs": true,
+    "target": "es2015",
+    "lib": ["es2018", "es2015"]
   },
   "files": [
     "src/polyfills.ts"
@@ -16,7 +22,7 @@
   "include": [
     "node_modules/**/*.d.ts",
     "node_modules/@types/jest-image-snapshot/index.d.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.spec.ts"
   ]
 }
