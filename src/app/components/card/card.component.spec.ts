@@ -1,8 +1,7 @@
-import { CardComponent } from './card.component';
-import { render } from '@testing-library/angular';
-import { Pokemon } from 'src/app/models/pokemon.model';
-import { FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective } from '../../directives/feature-toggle.directive';
-import { EventEmitter } from '@angular/core';
+import {CardComponent} from './card.component';
+import {render} from '@testing-library/angular';
+import {Pokemon} from 'src/app/models/pokemon.model';
+import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../../directives/feature-toggle.directive';
 
 describe('CardComponent', () => {
   const declarations = [ FeatureToggleDirective ];
@@ -43,7 +42,7 @@ describe('CardComponent', () => {
       providers: [{
         provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}
       }],
-      componentProperties: {pokemon, adopted: {emit: adoptedCallback} as any},
+      componentProperties: {pokemon, adopted: {emit: adoptedCallback}} as any,
       declarations
     });
 

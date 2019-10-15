@@ -1,7 +1,8 @@
-import { Pokemon } from 'src/app/models/pokemon.model';
-import { CardListComponent } from '../app/components/card-list/card-list.component';
-import { CardComponent } from '../app/components/card/card.component';
-import { moduleMetadata, storiesOf } from '@storybook/angular';
+import {Pokemon} from 'src/app/models/pokemon.model';
+import {CardListComponent} from '../app/components/card-list/card-list.component';
+import {CardComponent} from '../app/components/card/card.component';
+import {moduleMetadata, storiesOf} from '@storybook/angular';
+import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../app/directives/feature-toggle.directive';
 
 const pokemon = new Pokemon(1, 'Bulbasauro');
 const Pidgiotte = new Pokemon(18, 'Pidgiotte');
@@ -12,10 +13,11 @@ const pokemons = [pokemon, pidgey, Pidgiotto, Pidgiotte];
 storiesOf('PokeCardList', module)
   .addDecorator(
     moduleMetadata({
-      declarations: [CardComponent]
+      declarations: [CardComponent, FeatureToggleDirective],
+      providers: [{provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {}}]
     }),
   )
   .add('default', () => ({
     component: CardListComponent,
-    props: { pokemons }
+    props: {pokemons}
   }));
