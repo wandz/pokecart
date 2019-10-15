@@ -12,6 +12,8 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { AdoptComponent } from './pages/adopt/adopt.component';
 import { Page500Component } from './pages/page500/page500.component';
 import { CartCountComponent } from './components/cart-count/cart-count.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { PokemonSpriteComponent } from './components/pokemon-sprite/pokemon-sprite.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CartCountComponent } from './components/cart-count/cart-count.component
     CardListComponent,
     AdoptComponent,
     Page500Component,
-    CartCountComponent
+    CartCountComponent,
+    CartItemComponent,
+    PokemonSpriteComponent
   ],
   imports: [
     BrowserModule,

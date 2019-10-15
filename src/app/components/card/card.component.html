@@ -1,5 +1,5 @@
 <section class="pokecard">
-  <img alt="{{pokemon.name}} sprite" src="{{pokemon.getSprite()}}"/>
+  <poke-pokemon-sprite [pokemon]="pokemon"></poke-pokemon-sprite>
   <h1 class="pokecard__name">{{ pokemon.name }}</h1>
   <button [pokeFeatureToggle]="'show-cartcount'" (click)="adopt()" (keydown.enter)="adopt()">Adotar</button>
 </section>

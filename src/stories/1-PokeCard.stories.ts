@@ -2,11 +2,12 @@ import {CardComponent} from 'src/app/components/card/card.component';
 import {Pokemon} from 'src/app/models/pokemon.model';
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../app/directives/feature-toggle.directive';
+import {PokemonSpriteComponent} from '../app/components/pokemon-sprite/pokemon-sprite.component';
 
 storiesOf('PokeCard', module)
   .addDecorator(
     moduleMetadata({
-      declarations: [CardComponent, FeatureToggleDirective],
+      declarations: [CardComponent, FeatureToggleDirective, PokemonSpriteComponent],
       providers: [{provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}}]
     }),
   )
@@ -18,7 +19,7 @@ storiesOf('PokeCard', module)
 storiesOf('PokeCard', module)
   .addDecorator(
     moduleMetadata({
-      declarations: [CardComponent, FeatureToggleDirective],
+      declarations: [CardComponent, FeatureToggleDirective, PokemonSpriteComponent],
       providers: [{provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': false}}]
     }),
   )

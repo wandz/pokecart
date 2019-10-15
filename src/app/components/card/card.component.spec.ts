@@ -3,9 +3,10 @@ import {render} from '@testing-library/angular';
 import {Pokemon} from 'src/app/models/pokemon.model';
 import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../../directives/feature-toggle.directive';
 import {CartService} from '../../services/cart.service';
+import {PokemonSpriteComponent} from '../pokemon-sprite/pokemon-sprite.component';
 
 describe('CardComponent', () => {
-  const declarations = [FeatureToggleDirective];
+  const declarations = [FeatureToggleDirective, PokemonSpriteComponent];
 
   it('renders a pokemon name', async () => {
     const pokemon = new Pokemon(1, 'Pikachu');
@@ -14,16 +15,6 @@ describe('CardComponent', () => {
       declarations
     });
     expect(component.getByText('Pikachu')).toBeTruthy();
-  });
-
-  it('has a sprite with alt text', async () => {
-    const pokemon = new Pokemon(1, 'Bulbasauro');
-    const component = await render(CardComponent, {
-      componentProperties: {pokemon},
-      declarations
-    });
-
-    expect(component.getByAltText('Bulbasauro sprite')).not.toBeNull();
   });
 
   it('does not renders the adoption button if toggle is disabled', async () => {
