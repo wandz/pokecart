@@ -7,15 +7,11 @@ import {CartService} from '../../services/cart.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
   @Input() pokemon: Pokemon;
 
-  constructor(private readonly cartService: CartService) {
-  }
-
-  ngOnInit() {
-  }
+  constructor(private readonly cartService: CartService) { }
 
   adopt() {
     this.cartService.addPokemon(this.pokemon);
