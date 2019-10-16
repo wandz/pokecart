@@ -20,6 +20,8 @@
     "src/polyfills.ts"
   ],
   "include": [
+    "testUtils.ts",
+    "jestSetup.ts",
     "node_modules/**/*.d.ts",
     "node_modules/@types/jest-image-snapshot/index.d.ts",
     "src/**/*.d.ts",

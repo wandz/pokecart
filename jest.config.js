@@ -9,6 +9,10 @@ module.exports = {
       tsConfig: "./tsconfig.spec.json"
     }
   },
+  moduleDirectories: [
+    "./",
+    "node_modules",
+  ],
   setupFilesAfterEnv: [
     "<rootDir>/node_modules/@angular-builders/jest/dist/jest-config/setup.js",
     "<rootDir>/jestSetup.ts"

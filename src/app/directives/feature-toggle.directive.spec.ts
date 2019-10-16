@@ -1,6 +1,6 @@
-import { FeatureToggleDirective, FEATURE_TOGGLES_DI_TOKEN } from './feature-toggle.directive';
-import { render } from '@testing-library/angular';
-import { TestBed } from '@angular/core/testing';
+import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from './feature-toggle.directive';
+import {render} from '@testing-library/angular';
+import {withFeatureToggle} from 'testUtils';
 
 describe('FeatureToggleDirective', () => {
 
@@ -22,9 +22,10 @@ describe('FeatureToggleDirective', () => {
   });
 
   it('shows the child when the flag is true', async () => {
+    withFeatureToggle(['enable-example']);
+
     const component = await render(FeatureToggleDirective, {
-      template: `<div [pokeFeatureToggle]="'enable-example'">Pikachu</div>`,
-      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'enable-example': true } }]
+      template: `<div [pokeFeatureToggle]="'enable-example'">Pikachu</div>`
     });
 
     expect(component.queryByText('Pikachu')).not.toBeNull();

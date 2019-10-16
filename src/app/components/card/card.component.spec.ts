@@ -1,18 +1,31 @@
 import {CardComponent} from './card.component';
 import {render} from '@testing-library/angular';
 import {Pokemon} from 'src/app/models/pokemon.model';
-import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../../directives/feature-toggle.directive';
+import {FeatureToggleDirective} from '../../directives/feature-toggle.directive';
 import {CartService} from '../../services/cart.service';
 import {PokemonSpriteComponent} from '../pokemon-sprite/pokemon-sprite.component';
+import {TestBed} from '@angular/core/testing';
+import {withFeatureToggle} from 'testUtils';
 
 describe('CardComponent', () => {
-  const declarations = [FeatureToggleDirective, PokemonSpriteComponent];
+  let mockCardService;
+
+  beforeEach(() => {
+    mockCardService = {addPokemon: jest.fn()};
+
+    TestBed.configureTestingModule({
+      declarations: [FeatureToggleDirective, PokemonSpriteComponent],
+      providers: [{
+        provide: CartService,
+        useValue: mockCardService
+      }],
+    });
+  });
 
   it('renders a pokemon name', async () => {
     const pokemon = new Pokemon(1, 'Pikachu');
     const component = await render(CardComponent, {
       componentProperties: {pokemon},
-      declarations
     });
     expect(component.getByText('Pikachu')).toBeTruthy();
   });
@@ -21,44 +34,33 @@ describe('CardComponent', () => {
     const pokemon = new Pokemon(1, 'Bulbasauro');
     const component = await render(CardComponent, {
       componentProperties: {pokemon},
-      declarations
     });
 
     expect(component.queryByText('Adotar')).toBeNull();
   });
 
-  it('calls adopted callback when click on adopt button', async () => {
-    const mockCardService = {addPokemon: jest.fn()};
-    const pokemon = new Pokemon(1, 'Bulbasauro');
-    const component = await render(CardComponent, {
-      providers: [{
-        provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}
-      }, {
-        provide: CartService, useValue: mockCardService
-      }],
-      componentProperties: {pokemon},
-      declarations
+  describe('adopting a pokemon', () => {
+    beforeEach(() => withFeatureToggle(['show-cartcount']));
+
+    it('calls adopted callback when click on adopt button', async () => {
+      const pokemon = new Pokemon(1, 'Bulbasauro');
+      const component = await render(CardComponent, {
+        componentProperties: {pokemon},
+      });
+
+      component.click(component.queryByText('Adotar'));
+
+      expect(mockCardService.addPokemon).toBeCalled();
     });
 
-    component.click(component.queryByText('Adotar'));
+    it('calls adopted callback when press enter on adopt button', async () => {
+      const pokemon = new Pokemon(1, 'Bulbasauro');
+      const component = await render(CardComponent, {
+        componentProperties: {pokemon},
+      });
+      component.keyDown(component.queryByText('Adotar'), {key: 'Enter', code: 13});
 
-    expect(mockCardService.addPokemon).toBeCalled();
-  });
-
-  it('calls adopted callback when press enter on adopt button', async () => {
-    const mockCardService = {addPokemon: jest.fn()};
-    const pokemon = new Pokemon(1, 'Bulbasauro');
-    const component = await render(CardComponent, {
-      providers: [{
-        provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'show-cartcount': true}
-      }, {
-        provide: CartService, useValue: mockCardService
-      }],
-      componentProperties: {pokemon},
-      declarations
+      expect(mockCardService.addPokemon).toBeCalled();
     });
-    component.keyDown(component.queryByText('Adotar'), {key: 'Enter', code: 13});
-
-    expect(mockCardService.addPokemon).toBeCalled();
   });
 });
