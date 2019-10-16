@@ -1,14 +1,15 @@
-import { CardListComponent } from './card-list.component';
-import { Pokemon } from '../../models/pokemon.model';
-import { render } from '@testing-library/angular';
-import { CardComponent } from '../card/card.component';
-import { FeatureToggleDirective } from '../../directives/feature-toggle.directive';
+import {CardListComponent} from './card-list.component';
+import {Pokemon} from '../../models/pokemon.model';
+import {render} from '@testing-library/angular';
+import {CardComponent} from '../card/card.component';
+import {FeatureToggleDirective} from '../../directives/feature-toggle.directive';
 import {TestBed} from '@angular/core/testing';
+import {PokemonSpriteComponent} from 'src/app/components/pokemon-sprite/pokemon-sprite.component';
 
 describe('CardListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardComponent, FeatureToggleDirective ]
+      declarations: [ CardComponent, FeatureToggleDirective, PokemonSpriteComponent ]
     });
   });
 

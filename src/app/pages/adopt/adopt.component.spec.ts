@@ -11,6 +11,8 @@ import { routes } from '../../app-routing.module';
 import { Router } from '@angular/router';
 import { FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective } from '../../directives/feature-toggle.directive';
 import { CartCountComponent } from '../../components/cart-count/cart-count.component';
+import {PokemonSpriteComponent} from 'src/app/components/pokemon-sprite/pokemon-sprite.component';
+import {withFeatureToggle} from 'testUtils';
 
 const pokemon = new Pokemon(1, 'Pikachu');
 const pidgey = new Pokemon(16, 'Pidgey');
@@ -26,14 +28,16 @@ class MockPokemonService {
 }
 
 describe('AdoptComponent', () => {
-  const declarations = [CardComponent, CardListComponent, CartCountComponent, FeatureToggleDirective];
-
-  it('renders a pokemon list', async () => {
-    const component = await render(AdoptComponent, {
-      declarations,
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [RouterTestingModule],
+      declarations: [CardComponent, CardListComponent, CartCountComponent, FeatureToggleDirective, PokemonSpriteComponent],
       providers: [{provide: PokemonService, useValue: new MockPokemonService(of(pokemons))}]
     });
+  });
+
+  it('renders a pokemon list', async () => {
+    const component = await render(AdoptComponent);
 
     expect(component.getByText('Pikachu')).toBeTruthy();
     expect(component.getByText('Pidgey')).toBeTruthy();
@@ -43,10 +47,11 @@ describe('AdoptComponent', () => {
     const navigateMock = jest.fn();
 
     await render(AdoptComponent, {
-      declarations,
-      providers: [{
-        provide: PokemonService, useValue: new MockPokemonService(throwError(new Error('unable to reach the server')))
-      }, {
+      providers: [
+        {
+          provide: PokemonService, useValue: new MockPokemonService(throwError(new Error('unable to reach the server')))
+        },
+        {
         provide: Router, useValue: {navigate: navigateMock}
       }]
     });
@@ -55,27 +60,14 @@ describe('AdoptComponent', () => {
   });
 
   it('renders a pokemon list', async () => {
-    const component = await render(AdoptComponent, {
-      declarations,
-      imports: [RouterTestingModule],
-      providers: [{provide: PokemonService, useValue: new MockPokemonService(of(pokemons))}, {
-        provide: FEATURE_TOGGLES_DI_TOKEN,
-        useValue: {}
-      }]
-    });
+    const component = await render(AdoptComponent);
 
     expect(component.queryByText('0')).toBeNull();
   });
 
   it('renders a pokemon list', async () => {
-    const component = await render(AdoptComponent, {
-      declarations,
-      imports: [RouterTestingModule],
-      providers: [{provide: PokemonService, useValue: new MockPokemonService(of(pokemons))}, {
-        provide: FEATURE_TOGGLES_DI_TOKEN,
-        useValue: {'show-cartcount': true}
-      }]
-    });
+    withFeatureToggle(['show-cartcount']);
+    const component = await render(AdoptComponent);
 
     expect(component.queryByText('0')).not.toBeNull();
   });
