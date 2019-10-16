@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Cart } from '../../models/cart.model';
 
@@ -9,6 +9,7 @@ import { Cart } from '../../models/cart.model';
 })
 export class CartCountComponent implements OnInit {
   private cart: Cart;
+  @Output() clickEvent = new EventEmitter<void>();
 
   constructor(private readonly cartService: CartService) {
   }
@@ -18,8 +19,12 @@ export class CartCountComponent implements OnInit {
       this.cart = cart;
     });
   }
+
   getCartCount() {
     return this.cart.getCount();
   }
 
+  onClick() {
+    this.clickEvent.emit();
+  }
 }

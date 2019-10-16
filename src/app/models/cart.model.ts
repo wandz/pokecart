@@ -10,4 +10,8 @@ export class Cart {
   getCount() {
     return this.pokemons.length;
   }
+
+  getPokemons() {
+    return this.pokemons;
+  }
 }

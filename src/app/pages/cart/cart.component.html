@@ -1,0 +1,4 @@
+<span *ngIf="cart.getCount() === 0">Carrinho vazio</span>
+<section *ngIf="cart.getCount() !== 0">
+  <poke-cart-item *ngFor="let pokemon of cart.getPokemons()" [pokemon]="pokemon"></poke-cart-item>
+</section>
