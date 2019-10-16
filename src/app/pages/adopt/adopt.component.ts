@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon } from '../../models/pokemon.model';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { IFeatureToggle } from '../../models/app-config.model';
+import { FEATURE_TOGGLES_DI_TOKEN } from '../../directives/feature-toggle.directive';
 
 @Component({
   selector: 'poke-adopt',
@@ -12,7 +14,8 @@ import { Router } from '@angular/router';
 export class AdoptComponent implements OnInit {
   public pokemons: Observable<Pokemon[]> = of([]);
 
-  constructor(private readonly pokemonService: PokemonService, private readonly router: Router) {
+  constructor(private readonly pokemonService: PokemonService, private readonly router: Router,
+              @Inject(FEATURE_TOGGLES_DI_TOKEN) private toggles: IFeatureToggle) {
   }
 
   ngOnInit() {
@@ -23,6 +26,8 @@ export class AdoptComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigate(['cart']);
+    if (this.toggles['show-cartpage']) {
+      this.router.navigate(['cart']);
+    }
   }
 }

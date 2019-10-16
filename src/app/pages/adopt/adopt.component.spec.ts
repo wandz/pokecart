@@ -98,4 +98,19 @@ describe('AdoptComponent', () => {
     component.keyDown(component.queryByAltText('Ir pro carrinho'), {key: 'Enter', code: 13});
     expect(navigateMock).toBeCalledWith(['cart']);
   });
+
+
+  it('goes to the cart page when enter key is pressed', async () => {
+    withFeatureToggle(['show-cartcount']);
+    const navigateMock = jest.fn();
+    const component = await render(AdoptComponent, {
+      providers: [
+        {
+          provide: Router, useValue: {navigate: navigateMock}
+        }]
+    });
+
+    component.keyDown(component.queryByAltText('Ir pro carrinho'), {key: 'Enter', code: 13});
+    expect(navigateMock).not.toBeCalledWith(['cart']);
+  });
 });
