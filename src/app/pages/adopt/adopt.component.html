@@ -1,5 +1,5 @@
 <header>
-  <poke-cart-count (clickEvent)="router.navigate(['cart'])" [pokeFeatureToggle]="'show-cartcount'"></poke-cart-count>
+  <poke-cart-count (clickEvent)="goToCart()" [pokeFeatureToggle]="'show-cartcount'"></poke-cart-count>
 </header>
 <main>
   <poke-card-list [pokemons]="pokemons | async"></poke-card-list>
