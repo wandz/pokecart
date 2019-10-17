@@ -1,6 +1,7 @@
-import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from './feature-toggle.directive';
+import {FeatureToggleDirective} from './feature-toggle.directive';
 import {render} from '@testing-library/angular';
 import {withFeatureToggle} from 'testUtils';
+import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleService} from '../services/feature-toggle.service';
 
 describe('FeatureToggleDirective', () => {
 
@@ -15,7 +16,7 @@ describe('FeatureToggleDirective', () => {
   it('hides the child when the flag is false', async () => {
     const component = await render(FeatureToggleDirective, {
       template: `<div [pokeFeatureToggle]="'disable-example'">Pikachu</div>`,
-      providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: { 'disable-example': false } }]
+      providers: [{provide: FEATURE_TOGGLES_DI_TOKEN, useValue: {'disable-example': false}}, FeatureToggleService]
     });
 
     expect(component.queryByText('Pikachu')).toBeNull();

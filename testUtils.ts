@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {FEATURE_TOGGLES_DI_TOKEN} from 'src/app/directives/feature-toggle.directive';
+import {FEATURE_TOGGLES_DI_TOKEN} from './src/app/services/feature-toggle.service';
 
 export const withFeatureToggle = (activeToggles: string[]) => {
   const toggles = activeToggles
@@ -7,6 +7,6 @@ export const withFeatureToggle = (activeToggles: string[]) => {
     .reduce((allToggles, toggle) => ({...allToggles, ...toggle}), {});
 
   TestBed.configureTestingModule({
-    providers: [{ provide: FEATURE_TOGGLES_DI_TOKEN, useValue: toggles }]
+    providers: [{provide: FEATURE_TOGGLES_DI_TOKEN, useValue: toggles}]
   });
 };

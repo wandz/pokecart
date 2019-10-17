@@ -1,8 +1,9 @@
 import {CardComponent} from 'src/app/components/card/card.component';
 import {Pokemon} from 'src/app/models/pokemon.model';
 import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {FEATURE_TOGGLES_DI_TOKEN, FeatureToggleDirective} from '../app/directives/feature-toggle.directive';
+import {FeatureToggleDirective} from '../app/directives/feature-toggle.directive';
 import {PokemonSpriteComponent} from '../app/components/pokemon-sprite/pokemon-sprite.component';
+import {FEATURE_TOGGLES_DI_TOKEN} from '../app/services/feature-toggle.service';
 
 storiesOf('PokeCard', module)
   .addDecorator(
