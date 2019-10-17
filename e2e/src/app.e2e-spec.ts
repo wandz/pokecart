@@ -1,6 +1,5 @@
 import {AppPage} from './app.po';
 import {Page500} from './page500.po';
-import {CartPage} from './cart.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -25,10 +24,24 @@ describe('workspace-project App', () => {
     it('goes to cart page', async () => {
       await page.navigateTo();
       await page.isLoaded();
-      await page.goToCart();
-      const cartPage = new CartPage();
+      const cartPage = await page.goToCart();
 
       expect(await cartPage.isInPage()).not.toBeNull();
+    });
+  });
+
+  describe('adopting pokemons', () => {
+    it('shows adopted pokemons on cart page', async () => {
+      await page.navigateTo();
+      await page.isLoaded();
+
+      await page.adoptPokemon('charmeleon');
+      await page.adoptPokemon('butterfree');
+
+      const cartPage = await page.goToCart();
+
+      expect(await cartPage.hasPokemon('charmeleon')).toBeTruthy();
+      expect(await cartPage.hasPokemon('butterfree')).toBeTruthy();
     });
   });
 

@@ -1,3 +1,5 @@
+import {CartPage} from './cart.po';
+
 export class AppPage {
   async navigateTo() {
     await page.goto('http://localhost:4200/');
@@ -22,12 +24,24 @@ export class AppPage {
       document.querySelector('.pokecartcount span').textContent);
   }
 
+  adoptPokemon(pokemonName: string) {
+    return page.evaluate((pokemonNameBrowser: string) => {
+      Array.from(document.querySelectorAll('h1'))
+        .filter((element) => element.textContent === pokemonNameBrowser)[0]
+        .parentElement
+        .querySelector('button')
+        .click();
+    }, pokemonName);
+  }
+
   clickAdoptButton() {
     return page.click('poke-card:first-child button');
   }
 
-  async goToCart() {
-    return page.click('[alt="Ir pro carrinho"]');
+  async goToCart(): Promise<CartPage> {
+    await page.click('[alt="Ir pro carrinho"]');
+
+    return new CartPage();
   }
 
   withPokeApiError() {
