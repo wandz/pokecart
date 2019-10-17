@@ -26,6 +26,10 @@ export class AppPage {
     return page.click('poke-card:first-child button');
   }
 
+  async goToCart() {
+    return page.click('[alt="Ir pro carrinho"]');
+  }
+
   withPokeApiError() {
     page.setRequestInterception(true);
     page.on('request', request => {

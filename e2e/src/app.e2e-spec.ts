@@ -1,5 +1,6 @@
 import {AppPage} from './app.po';
 import {Page500} from './page500.po';
+import {CartPage} from './cart.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -19,6 +20,15 @@ describe('workspace-project App', () => {
       await page.navigateTo();
       await page.isLoaded();
       expect(await page.getFirstPokemonName()).toEqual('bulbasaur');
+    });
+
+    it('goes to cart page', async () => {
+      await page.navigateTo();
+      await page.isLoaded();
+      await page.goToCart();
+      const cartPage = new CartPage();
+
+      expect(await cartPage.isInPage()).not.toBeNull();
     });
   });
 

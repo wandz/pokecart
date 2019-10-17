@@ -1,5 +1,4 @@
-<div class="pokecartcount">
-  <img (keydown.enter)="onClick()" (click)="onClick()" class="pokecartcount__icon" alt="Ir pro carrinho"
-       src="assets/images/cart.svg"/>
+<a routerLink="/cart" class="pokecartcount">
+  <img class="pokecartcount__icon" alt="Ir pro carrinho" src="assets/images/cart.svg"/>
   <span>{{getCartCount()}}</span>
-</div>
+</a>
