@@ -18,7 +18,9 @@
     "test:watch": "ng test --watch",
     "test:coverage": "ng test --coverage",
     "storybook": "start-storybook -p 6006 --ci --quiet",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "cy:run": "cypress run",
+    "test:cy:e2e": "start-server-and-test start http-get://localhost:4200 cy:run"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +46,7 @@
     "@angular/compiler-cli": "8.2.8",
     "@angular/language-service": "8.2.8",
     "@babel/core": "7.6.3",
+    "@cypress/webpack-preprocessor": "^4.1.0",
     "@storybook/addon-actions": "5.2.3",
     "@storybook/addon-links": "5.2.3",
     "@storybook/addon-notes": "5.2.3",
@@ -59,6 +62,7 @@
     "@types/puppeteer": "1.20.1",
     "babel-loader": "8.0.6",
     "codelyzer": "5.0.0",
+    "cypress": "^3.4.1",
     "husky": "3.0.8",
     "jasmine-core": "3.4.0",
     "jasmine-spec-reporter": "4.2.1",
