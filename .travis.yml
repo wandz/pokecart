@@ -5,6 +5,11 @@ language: node_js
 node_js:
   - "stable"
 
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+
 cache:
   directories:
     - ./node_modules
@@ -13,12 +18,13 @@ cache:
 install:
   - npm run docker:build
   - npm run docker:npm:install
+  - npx cypress install
 
 script:
+  - npm run test:cy:e2e
   - npm run docker:npm:run -- lint
   - npm run docker:npm:run -- test
   - npm run docker:npm:run -- test:snapshot
-  - npm run test:cy:e2e
   - npm run docker:npm:run -- test:e2e
   - npm run build -- --prod --base-href /pokecart/
   - cp dist/pokecart/index.html dist/pokecart/404.html
