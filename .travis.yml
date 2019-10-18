@@ -8,6 +8,7 @@ node_js:
 cache:
   directories:
     - ./node_modules
+    - ~/.cache/Cypress
 
 install:
   - npm run docker:build
