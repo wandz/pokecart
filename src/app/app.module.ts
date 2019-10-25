@@ -30,7 +30,7 @@ import {FEATURE_TOGGLES_DI_TOKEN} from './services/feature-toggle.service';
     CartComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule
   ],
