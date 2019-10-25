@@ -1,5 +1,7 @@
 <header>
-  <poke-cart-count [pokeFeatureToggle]="'show-cartcount'" *ngIf="isBrowser"></poke-cart-count>
+  <div pokeShowIfIsBrowser>
+    <poke-cart-count [pokeFeatureToggle]="'show-cartcount'" pokeShowIfIsBrowser></poke-cart-count>
+  </div>
 </header>
 <main>
   <poke-card-list [pokemons]="pokemons | async"></poke-card-list>

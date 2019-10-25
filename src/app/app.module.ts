@@ -15,6 +15,7 @@ import {CartItemComponent} from './components/cart-item/cart-item.component';
 import {PokemonSpriteComponent} from './components/pokemon-sprite/pokemon-sprite.component';
 import {CartComponent} from './pages/cart/cart.component';
 import {FEATURE_TOGGLES_DI_TOKEN} from './services/feature-toggle.service';
+import { ShowIfIsBrowserDirective } from './directives/show-if-is-browser.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FEATURE_TOGGLES_DI_TOKEN} from './services/feature-toggle.service';
     CartCountComponent,
     CartItemComponent,
     PokemonSpriteComponent,
-    CartComponent
+    CartComponent,
+    ShowIfIsBrowserDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

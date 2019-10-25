@@ -23,6 +23,11 @@ import {join} from 'path';
 // Express server
 const app = express();
 
+global.localStorage = {
+  getItem: () => null,
+  setItem: () => null
+};
+
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist/pokecart');
 
@@ -49,7 +54,7 @@ app.get('*.*', express.static(DIST_FOLDER, {
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render('index', {req});
 });
 
 // Start up the Node server
