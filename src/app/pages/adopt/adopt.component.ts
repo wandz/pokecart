@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {PokemonService} from '../../services/pokemon.service';
 import {Pokemon} from '../../models/pokemon.model';
 import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
-import {FeatureToggleService} from '../../services/feature-toggle.service';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'poke-adopt',
@@ -12,10 +12,11 @@ import {FeatureToggleService} from '../../services/feature-toggle.service';
 })
 export class AdoptComponent implements OnInit {
   public pokemons: Observable<Pokemon[]> = of([]);
+  public isBrowser = isPlatformBrowser(this.platformId);
 
   constructor(private readonly pokemonService: PokemonService,
               private readonly router: Router,
-              private readonly featureToggleService: FeatureToggleService) {
+              @Inject(PLATFORM_ID) private platformId: any) {
   }
 
   ngOnInit() {
@@ -23,11 +24,5 @@ export class AdoptComponent implements OnInit {
     this.pokemons.subscribe({
       error: () => this.router.navigate(['500'])
     });
-  }
-
-  goToCart() {
-    if (this.featureToggleService.isActive('show-cartpage')) {
-      this.router.navigate(['cart']);
-    }
   }
 }

@@ -1,5 +1,6 @@
 import {HomePage} from '../page-objects/app.po';
 import {Page500} from '../page-objects/page500.po';
+import {CartPage} from '../page-objects/cart.po';
 
 describe('workspace-project App', () => {
   let page: HomePage;
@@ -30,13 +31,26 @@ describe('workspace-project App', () => {
   });
 
   describe('adopting pokemons', () => {
-    it('shows adopted pokemons on cart page', () => {
+    it('shows adopted pokemons on cart page by navigation', () => {
       page.navigateTo();
 
       page.adoptPokemon('charmeleon');
       page.adoptPokemon('butterfree');
 
       const cartPage = page.goToCart();
+
+      cartPage.getPokemonItem('charmeleon').should('exist');
+      cartPage.getPokemonItem('butterfree').should('exist');
+    });
+
+    it('shows adopted pokemons on cart page by URL', () => {
+      page.navigateTo();
+
+      page.adoptPokemon('charmeleon');
+      page.adoptPokemon('butterfree');
+
+      const cartPage = new CartPage();
+      cartPage.navigateTo();
 
       cartPage.getPokemonItem('charmeleon').should('exist');
       cartPage.getPokemonItem('butterfree').should('exist');
